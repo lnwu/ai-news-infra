@@ -25,8 +25,3 @@ resource "tfe_project" "ai_news" {
   organization = data.tfe_organization.lnwu.id
   name         = "ai-news"
 }
-
-resource "tfe_project" "learning_english" {
-  organization = data.tfe_organization.lnwu.id
-  name         = "learning-english"
-}
