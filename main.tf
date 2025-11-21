@@ -22,6 +22,6 @@ data "tfe_organization" "lnwu" {
 }
 
 resource "tfe_project" "ai_news" {
-  organization = data.tfe_organization.lnwu.id
+  organization = data.tfe_organization.lnwu.name
   name         = "ai-news"
 }
