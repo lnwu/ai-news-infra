@@ -10,7 +10,7 @@ terraform {
   backend "remote" {
     organization = "lnwu"
     workspaces {
-      name = locals.ai_news_workspace_name
+      name = "ai-news"
     }
   }
 }
