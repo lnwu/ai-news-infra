@@ -3,19 +3,23 @@ terraform {
   required_providers {
     tfe = {
       source  = "hashicorp/tfe"
-      version = "~> 0.50"
+      version = "~> 0.71.0"
     }
   }
 
   backend "remote" {
     organization = "lnwu"
     workspaces {
-      name = "lnwu-infra"
+      name = locals.ai_news_workspace_name
     }
   }
 }
 
 provider "tfe" {}
+
+locals {
+  ai_news_workspace_name = "ai-news"
+}
 
 data "tfe_organization" "lnwu" {
   name = "lnwu"
@@ -23,5 +27,11 @@ data "tfe_organization" "lnwu" {
 
 resource "tfe_project" "ai_news" {
   organization = data.tfe_organization.lnwu.name
-  name         = "ai-news"
+  name         = local.ai_news_workspace_name
+}
+
+resource "tfe_workspace" "ai_news" {
+  name         = local.ai_news_workspace_name
+  organization = data.tfe_organization.lnwu.name
+  project_id   = tfe_project.ai_news.id
 }
