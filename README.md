@@ -2,12 +2,16 @@
 
 Infrastructure as Code for managing Terraform Cloud projects and workspaces.
 
-## Projects
+## Overview
 
-This Terraform configuration creates and manages the following projects in the `lnwu` organization:
+This Terraform configuration creates and manages the AI News project and workspace in the Terraform Cloud `lnwu` organization.
 
-- **ai-news** - AI news infrastructure project
-- **learning-english** - English learning infrastructure project
+## Resources
+
+The configuration provisions the following Terraform Cloud resources:
+
+- **ai-news Project** - Main project for AI news infrastructure
+- **ai-news Workspace** - Workspace associated with the ai-news project
 
 ## Prerequisites
 
@@ -15,6 +19,7 @@ To use this Terraform configuration, you need:
 
 1. **Terraform** >= 1.0
 2. **Terraform Cloud API Token** - Set the `TFE_TOKEN` environment variable with your Terraform Cloud API token
+3. **Terraform Cloud Account** - An active account in the `lnwu` organization
 
 ## Setup
 
@@ -36,10 +41,11 @@ To use this Terraform configuration, you need:
    terraform apply
    ```
 
-## Configuration
+## Configuration Details
 
-The infrastructure is defined in `main.tf` and includes:
+The infrastructure is defined in `main.tf`:
 
-- **TFE Provider**: Manages Terraform Cloud/Enterprise resources
-- **lnwu Organization**: Main organization with email wind2729@gmail.com
-- **Projects**: Two managed projects (ai-news and learning-english)
+- **Terraform Version**: >= 1.0
+- **Provider**: HashiCorp TFE (Terraform Cloud) v0.71.0
+- **Backend**: Remote backend stored in Terraform Cloud (`lnwu` organization, `ai-news` workspace)
+- **Organization**: `lnwu`
