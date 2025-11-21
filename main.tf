@@ -15,23 +15,19 @@ terraform {
   }
 }
 
-provider "tfe" {}
-
-locals {
-  ai_news_workspace_name = "ai-news"
+provider "tfe" {
+  organization = "lnwu"
 }
 
-data "tfe_organization" "lnwu" {
-  name = "lnwu"
+locals {
+  project_name = "ai-news"
 }
 
 resource "tfe_project" "ai_news" {
-  organization = data.tfe_organization.lnwu.name
-  name         = local.ai_news_workspace_name
+  name = local.project_name
 }
 
 resource "tfe_workspace" "ai_news" {
-  name         = local.ai_news_workspace_name
-  organization = data.tfe_organization.lnwu.name
-  project_id   = tfe_project.ai_news.id
+  name       = local.project_name
+  project_id = tfe_project.ai_news.id
 }
